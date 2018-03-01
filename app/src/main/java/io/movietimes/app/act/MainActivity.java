@@ -15,7 +15,7 @@ import io.movietimes.app.R;
 import io.movietimes.app.frag.HomeFrag;
 import io.movietimes.app.utils.StatusBarHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HomeFrag.OnMenuActionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,5 +61,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSearch() {
+
+    }
+
+    @Override
+    public void onFilterList() {
+
     }
 }
