@@ -1,4 +1,4 @@
-package io.movietimes.app;
+package io.movietimes.app.adapter;
 
 import android.content.Context;
 import android.support.v7.util.DiffUtil;
@@ -15,6 +15,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.movietimes.app.model.Card;
+import io.movietimes.app.R;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.VH> {
 

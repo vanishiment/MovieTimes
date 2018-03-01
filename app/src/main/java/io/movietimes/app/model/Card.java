@@ -1,4 +1,4 @@
-package io.movietimes.app;
+package io.movietimes.app.model;
 
 
 import java.util.List;

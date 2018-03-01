@@ -1,7 +1,9 @@
-package io.movietimes.app;
+package io.movietimes.app.frag;
 
 import android.view.View;
 import android.view.ViewGroup;
+
+import io.movietimes.app.widget.EmptyView;
 
 public abstract class BaseFrag extends LazyFrag {
 

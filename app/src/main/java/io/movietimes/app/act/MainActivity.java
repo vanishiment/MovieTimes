@@ -1,4 +1,4 @@
-package io.movietimes.app;
+package io.movietimes.app.act;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import io.movietimes.app.R;
+import io.movietimes.app.frag.HomeFrag;
+import io.movietimes.app.utils.StatusBarHelper;
 
 public class MainActivity extends AppCompatActivity {
 

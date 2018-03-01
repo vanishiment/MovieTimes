@@ -1,4 +1,4 @@
-package io.movietimes.app;
+package io.movietimes.app.frag;
 
 import android.content.Context;
 import android.os.Handler;
@@ -9,6 +9,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+
+import io.movietimes.app.R;
+import io.movietimes.app.adapter.HomeAdapter;
+import io.movietimes.app.data.Data;
 
 
 public class HomeFrag extends BaseFrag implements SwipeRefreshLayout.OnRefreshListener {

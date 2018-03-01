@@ -1,4 +1,4 @@
-package io.movietimes.app;
+package io.movietimes.app.utils;
 
 
 import android.content.Context;

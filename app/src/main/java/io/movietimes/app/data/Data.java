@@ -1,8 +1,10 @@
-package io.movietimes.app;
+package io.movietimes.app.data;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.movietimes.app.model.Card;
 
 public class Data {
 

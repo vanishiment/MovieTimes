@@ -1,4 +1,4 @@
-package io.movietimes.app;
+package io.movietimes.app.frag;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
