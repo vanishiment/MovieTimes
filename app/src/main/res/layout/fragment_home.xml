@@ -4,9 +4,6 @@
              android:layout_height="match_parent"
              tools:context="io.movietimes.app.HomeFrag">
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+    <include layout="@layout/base_list_layout"/>
 
 </FrameLayout>

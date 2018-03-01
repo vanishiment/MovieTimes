@@ -1,30 +1,60 @@
 package io.movietimes.app;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 
-public class HomeFrag extends Fragment {
+public class HomeFrag extends BaseFrag implements SwipeRefreshLayout.OnRefreshListener {
 
     private OnMenuActionListener mListener;
+
+    private Context mContext;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    RecyclerView mRecyclerView;
+    HomeAdapter mHomeAdapter;
 
     public HomeFrag() {
         // Required empty public constructor
     }
 
+    @Override
+    public void initView(View view) {
+        super.initView(view);
+        setHasOptionsMenu(true);
+
+        mSwipeRefreshLayout = view.findViewById(R.id.base_swipe_refresh_layout);
+        mRecyclerView = view.findViewById(R.id.base_recycler_view);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mRecyclerView.getContext());
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mHomeAdapter = new HomeAdapter(mContext);
+        mRecyclerView.setAdapter(mHomeAdapter);
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.fragment_home, container, false);
+    public int getLayoutId() {
+        return R.layout.fragment_home;
+    }
+
+    @Override
+    public void loadData() {
+        showLoading();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showContentView();
+                mHomeAdapter.replaceData(Data.genCardList());
+            }
+        }, 3000);
     }
 
     @Override
@@ -71,6 +101,18 @@ public class HomeFrag extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (mSwipeRefreshLayout.isRefreshing()){
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
+            }
+        }, 3000);
     }
 
     public interface OnMenuActionListener {

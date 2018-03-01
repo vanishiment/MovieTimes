@@ -3,6 +3,7 @@ package io.movietimes.app;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StatusBarHelper.translucent(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -31,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        FragmentManager fm = getSupportFragmentManager();
+        HomeFrag homeFrag = (HomeFrag) fm.findFragmentByTag(HomeFrag.class.getSimpleName());
+        if (homeFrag == null){
+            homeFrag = new HomeFrag();
+            fm.beginTransaction().add(R.id.content_frag,homeFrag,HomeFrag.class.getSimpleName()).commit();
+        }
     }
 
     @Override

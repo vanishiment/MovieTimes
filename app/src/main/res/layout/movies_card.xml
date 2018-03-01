@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/item_card"
+        android:layout_width="match_parent"
+        android:layout_height="248dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+>
+
+    <ImageView
+            android:id="@+id/item_movie_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/movie_placeholder"
+            android:scaleType="centerCrop"
+            android:contentDescription="@null"
+    />
+
+    <TextView
+            android:id="@+id/item_movie_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:gravity="bottom"
+            android:background="#AA000000"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:fontFamily="@font/app_title_font"
+            android:textSize="20sp"
+            android:textColor="#FFF"
+            tools:text="Avengers"
+    />
+
+</FrameLayout>
