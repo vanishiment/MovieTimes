@@ -2,6 +2,7 @@ package io.movietimes.app.frag;
 
 import android.content.Context;
 import android.os.Handler;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,9 +14,10 @@ import android.view.View;
 import io.movietimes.app.R;
 import io.movietimes.app.adapter.HomeAdapter;
 import io.movietimes.app.data.Data;
+import io.movietimes.app.model.Card;
 
 
-public class HomeFrag extends BaseFrag implements SwipeRefreshLayout.OnRefreshListener {
+public class HomeFrag extends BaseFrag implements SwipeRefreshLayout.OnRefreshListener ,HomeAdapter.OnItemClickListener{
 
     private OnMenuActionListener mListener;
 
@@ -41,6 +43,7 @@ public class HomeFrag extends BaseFrag implements SwipeRefreshLayout.OnRefreshLi
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setHasFixedSize(true);
         mHomeAdapter = new HomeAdapter(mContext);
+        mHomeAdapter.setListener(this);
         mRecyclerView.setAdapter(mHomeAdapter);
     }
 
@@ -57,8 +60,9 @@ public class HomeFrag extends BaseFrag implements SwipeRefreshLayout.OnRefreshLi
             public void run() {
                 showContentView();
                 mHomeAdapter.replaceData(Data.genCardList());
+//                loadDataFinished();
             }
-        }, 3000);
+        }, 500);
     }
 
     @Override
@@ -79,6 +83,11 @@ public class HomeFrag extends BaseFrag implements SwipeRefreshLayout.OnRefreshLi
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragBack() {
+        // no need.
     }
 
     private void onSearch() {
@@ -123,5 +132,14 @@ public class HomeFrag extends BaseFrag implements SwipeRefreshLayout.OnRefreshLi
         void onSearch();
 
         void onFilterList();
+
+        void onItemClickListener(View view, Card card, int position);
+    }
+
+    @Override
+    public void onItemClickListener(View view, Card card, int position) {
+        if (mListener != null) {
+            mListener.onItemClickListener(view, card, position);
+        }
     }
 }

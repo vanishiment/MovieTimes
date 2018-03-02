@@ -24,6 +24,18 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.VH> {
     private Context mContext;
     private List<Card> mCardList = new ArrayList<>();
 
+    private OnItemClickListener mListener;
+
+    public void setListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
+    public interface OnItemClickListener {
+
+        void onItemClickListener(View view, Card card, int position);
+
+    }
+
     public HomeAdapter(Context context) {
         mContext = context;
     }
@@ -48,11 +60,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.VH> {
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(mContext, DetailAct.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putParcelable(DetailAct.CARD,card);
-//                intent.putExtras(bundle);
-//                mContext.startActivity(intent);
+                if (mListener != null) {
+                    mListener.onItemClickListener(v, card, position);
+                }
             }
         });
     }

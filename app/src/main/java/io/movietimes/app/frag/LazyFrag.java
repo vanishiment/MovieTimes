@@ -41,4 +41,15 @@ public abstract class LazyFrag extends Fragment {
      */
     public abstract void loadData();
 
+    public void loadDataFinished(){
+        mIsDataInited = true;
+    }
+
+    public void needLoadDataWhenInit(){
+        mIsDataInited = false;
+    }
+
+    public void reloadData(){
+        loadData();
+    }
 }
