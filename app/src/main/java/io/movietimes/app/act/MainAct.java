@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,7 +47,6 @@ public class MainAct extends AppCompatActivity implements HomeFrag.OnMenuActionL
             homeFrag = new HomeFrag();
         }
         fm.beginTransaction().add(R.id.content_frag, homeFrag, HomeFrag.class.getSimpleName())
-                .addToBackStack(HomeFrag.class.getSimpleName())
                 .commit();
     }
 
@@ -122,8 +122,16 @@ public class MainAct extends AppCompatActivity implements HomeFrag.OnMenuActionL
         toolbarTitle = findViewById(R.id.toolbar_title);
         toolbarTitle.setVisibility(View.VISIBLE);
         FragmentManager fm = getSupportFragmentManager();
-        fm.popBackStack(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        if (TextUtils.isEmpty(tag)){
+            fm.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }else {
+            fm.popBackStack(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        onBack(null);
+    }
 }

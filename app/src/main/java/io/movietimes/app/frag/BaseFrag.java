@@ -26,7 +26,7 @@ public abstract class BaseFrag extends LazyFrag {
 
         setHasOptionsMenu(true);
 
-        if (mListener != null) {
+        if (mListener != null && !isHomeFrag()) {
             mListener.onShowToolbar();
         }
     }
@@ -92,25 +92,33 @@ public abstract class BaseFrag extends LazyFrag {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_base_toolbar, menu);
+        if (!isHomeFrag()){
+            inflater.inflate(R.menu.menu_base_toolbar, menu);
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        if (isHomeFrag()){
+            return super.onOptionsItemSelected(item);
+        }else {
+            int id = item.getItemId();
 
-        if (id == R.id.menu_action_search) {
+            if (id == R.id.menu_action_search) {
 
-            return true;
-        } else if (id == R.id.menu_action_filter) {
-            return true;
-        } else if (id == android.R.id.home) {
-            onFragBack();
-            return true;
+                return true;
+            } else if (id == R.id.menu_action_filter) {
+                return true;
+            } else if (id == android.R.id.home) {
+                onFragBack();
+                return true;
+            }
+
+            return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public abstract void onFragBack();
+
+    public abstract boolean isHomeFrag();
 }

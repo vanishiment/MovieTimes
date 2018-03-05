@@ -90,6 +90,11 @@ public class HomeFrag extends BaseFrag implements SwipeRefreshLayout.OnRefreshLi
         // no need.
     }
 
+    @Override
+    public boolean isHomeFrag() {
+        return true;
+    }
+
     private void onSearch() {
         if (mListener != null) {
             mListener.onSearch();

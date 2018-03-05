@@ -21,6 +21,11 @@ public class DetailFrag extends BaseFrag {
     }
 
     @Override
+    public boolean isHomeFrag() {
+        return false;
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.fragment_detail;
     }
